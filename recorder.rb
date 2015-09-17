@@ -34,7 +34,11 @@ class Recorder < Formula
 
     doc.install "README.md"
 
-    (var/"owntracks/recorder/htdocs").install Dir["docroot/*"]
+    # (var/"owntracks/recorder/htdocs").install Dir["docroot/*"]
+
+    # install htdocs/docroot. This will create a symlink to
+    # /usr/local/share/recorder/docroot
+    pkgshare.install Dir["docroot"]
 
   end
 
@@ -65,7 +69,8 @@ class Recorder < Formula
       HAVE_PING ?= yes
       HAVE_KILL ?= no
       STORAGEDEFAULT = /usr/local/var/owntracks/recorder/store
-      DOCROOT = /usr/local/var/owntracks/recorder/htdocs
+      # DOCROOT = /usr/local/var/owntracks/recorder/htdocs
+      DOCROOT = /usr/local/share/recorder/docroot
       GHASHPREC = 7
       JSON_INDENT ?= no
       APIKEY ?=
