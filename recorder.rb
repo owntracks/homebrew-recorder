@@ -26,8 +26,8 @@ class Recorder < Formula
     (var/"owntracks/recorder/store/ghash").mkpath
     (var/"owntracks/recorder/store/rec").mkpath
 
-    libexec.install "ot-recorder"
-    chmod 0755, libexec/"ot-recorder"
+    sbin.install "ot-recorder"
+    chmod 0755, sbin/"ot-recorder"
 
     bin.install "ocat"
     chmod 0755, bin/"ocat"
@@ -46,8 +46,6 @@ class Recorder < Formula
 
   test do
      system "#{bin}/ocat", "--version"
-     # quiet_system "#{sbin}/mosquitto", "-h"
-     # assert_equal 3, $?.exitstatus
   end
 
   def caveats; <<-EOD.undent
@@ -99,7 +97,7 @@ class Recorder < Formula
 
     opts="${opts} --http-host 127.0.0.1 --http-port 8083"
 
-    exec "#{libexec}/ot-recorder" ${opts} "owntracks/#"
+    exec "/usr/local/sbin/ot-recorder" ${opts} "owntracks/#"
     EOS
   end
 
