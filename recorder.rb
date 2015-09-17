@@ -32,6 +32,8 @@ class Recorder < Formula
     bin.install "ocat"
     chmod 0755, bin/"ocat"
 
+    doc.install "README.md"
+
     (var/"owntracks/recorder/htdocs").install Dir["docroot/*"]
 
   end
@@ -79,7 +81,7 @@ class Recorder < Formula
 
     # Chose one of Hosted or Private modes. (Hosted is if you've
     # registered on hosted.owntracks.org, Private is when you're
-    # operating your own broker.
+    # operating your own broker.)
 
     #: Configuration for Hosted mode:
     #: Download https://www.startssl.com/certs/ca-bundle.pem and
