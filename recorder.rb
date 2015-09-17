@@ -77,9 +77,13 @@ class Recorder < Formula
     #!/bin/sh
     # Launch script for OwnTracks Recorder
 
-    # Configuration for Hosted mode:
-    # Download https://www.startssl.com/certs/ca-bundle.pem and
-    # change OTR_CAFILE to point to that file.
+    # Chose one of Hosted or Private modes. (Hosted is if you've
+    # registered on hosted.owntracks.org, Private is when you're
+    # operating your own broker.
+
+    #: Configuration for Hosted mode:
+    #: Download https://www.startssl.com/certs/ca-bundle.pem and
+    #: change OTR_CAFILE to point to that file.
 
     #:-- Hosted mode
     # export OTR_USER=""		# username as registered on Hosted
@@ -87,6 +91,10 @@ class Recorder < Formula
     # export OTR_TOKEN=""		# device token
     # export OTR_CAFILE=""		# PEM CA certificate chain
     # opts="--hosted"
+
+    #: Configuration for Private mode (your own MQTT broker). This requires
+    #: at least HOST and PORT. If you need TLS, set CAFILE, and for
+    #: authentication set USER and PASS additionally.
 
     #:-- Private mode
     export OTR_HOST="127.0.0.1"		# MQTT hostname
