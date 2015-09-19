@@ -9,6 +9,12 @@ class Recorder < Formula
   depends_on "mosquitto"
 
   def install
+
+    if (etc+"ot-recorder.sh").exist?
+       copy(etc+"ot-recorder.sh", "/tmp/ot-recorder.sh.backup")
+       ohai "Existing ot-recorder.sh has been copied to /tmp/ot-recorder.sh.backup"
+    end
+
     ENV.deparallelize  # if your formula fails when building in parallel
 
     # Create our config.mk from scratch
