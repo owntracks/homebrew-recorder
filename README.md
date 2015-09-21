@@ -3,6 +3,8 @@
 ```
 brew tap owntracks/recorder
 brew install recorder
+  or
+brew install recorder --with-lua
 ```
 
 ```
