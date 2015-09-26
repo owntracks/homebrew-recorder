@@ -73,12 +73,12 @@ class Recorder < Formula
          (etc+"ot-recorder.sh").write launch_script
          chmod 0755, etc/"ot-recorder.sh"
       end
+      ohai "initializing luadb" + %x("#{bin}/ocat" --load=luadb < /dev/null)
+      ohai "initializing topic2tid" + %x("#{bin}/ocat" --load=topic2tid < /dev/null)
   end
 
   test do
      system "#{bin}/ocat", "--version"
-     system "#{bin}/ocat", "--load=topic2tid", "</dev/null"
-     system "#{bin}/ocat", "--load=luadb", "</dev/null"
   end
 
   def caveats; <<-EOD.undent
