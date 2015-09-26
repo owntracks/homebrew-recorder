@@ -13,3 +13,10 @@ You can make changes to the configuration by editing and then
 launching:
     /usr/local/etc/ot-recorder.sh
 ```
+
+After installing version >= 0.4.1 please run this (it is non-destructive):
+
+```
+/usr/local/bin/ocat --load=luadb < /dev/null
+/usr/local/bin/ocat --load=topic2tid < /dev/null
+```

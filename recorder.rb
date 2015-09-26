@@ -1,9 +1,9 @@
 class Recorder < Formula
   desc "Store and access location data published via MQTT from OwnTracks apps"
   homepage "http://owntracks.org"
-  url "https://github.com/owntracks/recorder/archive/0.4.0.tar.gz"
-  version "0.4.0"
-  sha256 "6e6609079669895c5a10f9db8ccb1b36801870c159e0ce8cc8fc84169eb464aa"
+  url "https://github.com/owntracks/recorder/archive/0.4.1.tar.gz"
+  version "0.4.1"
+  sha256 "f0153c92843fa88930b4b7b66a204ea312cd4757b1bec90ee38646f26c87be82"
 
   option "with-lua", "Add support for Lua filtering"
 
@@ -77,6 +77,8 @@ class Recorder < Formula
 
   test do
      system "#{bin}/ocat", "--version"
+     system "#{bin}/ocat", "--load=topic2tid", "</dev/null"
+     system "#{bin}/ocat", "--load=luadb", "</dev/null"
   end
 
   def caveats; <<-EOD.undent
