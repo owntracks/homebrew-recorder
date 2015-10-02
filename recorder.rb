@@ -64,6 +64,7 @@ class Recorder < Formula
     # install htdocs/docroot. This will create a symlink to
     # /usr/local/share/recorder/docroot
     pkgshare.install Dir["docroot"]
+    pkgshare.install "contrib"
 
   end
 
