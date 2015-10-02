@@ -1,9 +1,9 @@
 class Recorder < Formula
   desc "Store and access location data published via MQTT from OwnTracks apps"
   homepage "http://owntracks.org"
-  url "https://github.com/owntracks/recorder/archive/0.4.1.tar.gz"
-  version "0.4.1"
-  sha256 "f0153c92843fa88930b4b7b66a204ea312cd4757b1bec90ee38646f26c87be82"
+  url "https://github.com/owntracks/recorder/archive/0.4.2.tar.gz"
+  version "0.4.2"
+  sha256 "868b97b87cc6d8bfc4c34c7599dbe35a35a426f47506a427c1bf1c0b55e30eb7"
 
   option "with-lua", "Add support for Lua filtering"
 
@@ -73,8 +73,10 @@ class Recorder < Formula
          (etc+"ot-recorder.sh").write launch_script
          chmod 0755, etc/"ot-recorder.sh"
       end
-      ohai "initializing luadb" + %x("#{bin}/ocat" --load=luadb < /dev/null)
-      ohai "initializing topic2tid" + %x("#{bin}/ocat" --load=topic2tid < /dev/null)
+      # ohai "initializing topic2tid" + %x("#{bin}/ocat" --load=topic2tid < /dev/null)
+
+      ohai "checking whether lmdb needs initializing"
+      system "#{sbin}/ot-recorder", "--initialize"
   end
 
   test do
@@ -91,11 +93,11 @@ class Recorder < Formula
 
   def config_mk; <<-EOS.undent
       INSTALLDIR = /
-      HAVE_HTTP ?= yes
-      HAVE_LMDB ?= yes
+      WITH_HTTP ?= yes
+      WITH_LMDB ?= yes
       WITH_LUA ?= #{withlua}
-      HAVE_PING ?= yes
-      HAVE_KILL ?= no
+      WITH_PING ?= yes
+      WITH_KILL ?= no
       STORAGEDEFAULT = /usr/local/var/owntracks/recorder/store
       # DOCROOT = /usr/local/var/owntracks/recorder/htdocs
       DOCROOT = /usr/local/share/recorder/docroot
