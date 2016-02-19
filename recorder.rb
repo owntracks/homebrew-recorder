@@ -1,9 +1,9 @@
 class Recorder < Formula
   desc "Store and access location data published via MQTT from OwnTracks apps"
   homepage "http://owntracks.org"
-  url "https://github.com/owntracks/recorder/archive/0.4.8.tar.gz"
-  version "0.4.8"
-  sha256 "24a64a15f3bd44f57323404c0abac1fefd09163929740ae182e94609ec2b08e3"
+  url "https://github.com/owntracks/recorder/archive/0.5.1.tar.gz"
+  version "0.5.1"
+  sha256 "010dc32ffb9472c678ebebcc1c24fb1016a6967582fff0baa786428ecbec2565"
 
   option "with-lua", "Add support for Lua filtering"
 
@@ -19,6 +19,7 @@ class Recorder < Formula
   # Recorder requires Mosquitto headers/libs for building
   depends_on "mosquitto"
   depends_on "lua" => [:optional, "lua"]
+  depends_on "libconfig"
 
   def pre_install
     if (etc+"ot-recorder.sh").exist?
@@ -94,13 +95,14 @@ class Recorder < Formula
 
   def config_mk; <<-EOS.undent
       INSTALLDIR = /
+      CONFIGFILE = /etc/defaults/ot-recorder
       WITH_HTTP ?= yes
       WITH_LMDB ?= yes
       WITH_LUA ?= #{withlua}
       WITH_PING ?= yes
       WITH_KILL ?= no
+      WITH_ENCRYPT ?= no
       STORAGEDEFAULT = /usr/local/var/owntracks/recorder/store
-      # DOCROOT = /usr/local/var/owntracks/recorder/htdocs
       DOCROOT = /usr/local/share/recorder/docroot
       GHASHPREC = 7
       JSON_INDENT ?= no
