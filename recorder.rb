@@ -98,7 +98,6 @@ class Recorder < Formula
       CONFIGFILE = /etc/defaults/ot-recorder
       WITH_MQTT ?= yes
       WITH_HTTP ?= yes
-      WITH_LMDB ?= yes
       WITH_LUA ?= #{withlua}
       WITH_PING ?= yes
       WITH_KILL ?= no
