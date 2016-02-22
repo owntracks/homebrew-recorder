@@ -96,6 +96,7 @@ class Recorder < Formula
   def config_mk; <<-EOS.undent
       INSTALLDIR = /
       CONFIGFILE = /etc/defaults/ot-recorder
+      WITH_MQTT ?= yes
       WITH_HTTP ?= yes
       WITH_LMDB ?= yes
       WITH_LUA ?= #{withlua}
