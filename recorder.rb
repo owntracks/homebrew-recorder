@@ -93,7 +93,7 @@ class Recorder < Formula
     EOD
   end
 
-  def config_mk; <<-EOS.undent
+  def config_mk; <<-EOS
       INSTALLDIR = /
       CONFIGFILE = /etc/defaults/ot-recorder
       WITH_MQTT ?= yes
@@ -116,7 +116,7 @@ class Recorder < Formula
     EOS
   end
 
-  def launch_script; <<-EOS.undent
+  def launch_script; <<-EOS
     #!/bin/sh
     # Launch script for OwnTracks Recorder
 
@@ -153,7 +153,7 @@ class Recorder < Formula
 
   plist_options :manual => "#{HOMEBREW_PREFIX}/etc/ot-recorder.sh"
 
-  def plist; <<-EOS.undent
+  def plist; <<-EOS
     <?xml version="1.0" encoding="UTF-8"?>
     <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
     <plist version="1.0">
