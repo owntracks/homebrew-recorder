@@ -85,7 +85,7 @@ class Recorder < Formula
      system "#{bin}/ocat", "--version"
   end
 
-  def caveats; <<-EOD.undent
+  def caveats; <<-EOD
     OwnTracks Recorder has been installed with a default configuration.
     You can make changes to the configuration by editing and then
     launching:
