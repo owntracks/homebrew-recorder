@@ -18,6 +18,7 @@ class Recorder < Formula
 
   # Recorder requires Mosquitto headers/libs for building
   depends_on "mosquitto"
+  depends_on "lmdb"
   depends_on "lua" => [:optional, "lua"]
   depends_on "libconfig"
 
