@@ -114,6 +114,7 @@ class Recorder < Formula
       MORELIBS = # -lssl
       LUA_CFLAGS = -I/usr/local/include
       LUA_LIBS   = -L/usr/local/lib -llua -lm
+      GEOCODE_TIMEOUT = 4000
     EOS
   end
 
