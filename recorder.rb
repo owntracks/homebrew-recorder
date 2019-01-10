@@ -1,9 +1,9 @@
 class Recorder < Formula
   desc "Store and access location data published via MQTT from OwnTracks apps"
   homepage "http://owntracks.org"
-  url "https://github.com/owntracks/recorder/archive/0.8.0.tar.gz"
-  version "0.8.0"
-  sha256 "8fd399befe6ce5a9be631595c37506c152a073b8967642580345b0a9aa4742d5"
+  url "https://github.com/owntracks/recorder/archive/0.8.1.tar.gz"
+  version "0.8.1"
+  sha256 "43af0dfeccc53c19f515dee80ff161a3ef6a5516daaba154614226be906d7ea8"
 
   option "with-lua", "Add support for Lua filtering"
 
