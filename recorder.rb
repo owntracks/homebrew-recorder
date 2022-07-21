@@ -1,9 +1,9 @@
 class Recorder < Formula
   desc "Store and access location data published via MQTT from OwnTracks apps"
   homepage "http://owntracks.org"
-  url "https://github.com/owntracks/recorder/archive/0.8.6.tar.gz"
-  version "0.8.6"
-  sha256 "33efc8c932819b15df5f4920e57f554dcbd358ca57eb3b2690aac24293d251a4"
+  url "https://github.com/owntracks/recorder/archive/0.9.0.tar.gz"
+  version "0.9.0"
+  sha256 "a9d80bb5154f1846074244cd3d0de4e93d109de98b8f7985f4b6a13a5f6b330a"
 
   option "with-lua", "Add support for Lua filtering"
 
@@ -96,7 +96,7 @@ class Recorder < Formula
 
   def config_mk; <<-EOS
       INSTALLDIR = /
-      CONFIGFILE = /etc/defaults/ot-recorder
+      CONFIGFILE = #{etc}/default/ot-recorder
       WITH_MQTT ?= yes
       WITH_HTTP ?= yes
       WITH_LUA ?= #{withlua}
@@ -104,16 +104,16 @@ class Recorder < Formula
       WITH_KILL ?= no
       WITH_ENCRYPT ?= no
       WITH_GREENWICH ?= yes
-      STORAGEDEFAULT = /usr/local/var/owntracks/recorder/store
-      DOCROOT = /usr/local/share/recorder/docroot
+      STORAGEDEFAULT = #{var}/owntracks/recorder/store
+      DOCROOT = #{share}/recorder/docroot
       GHASHPREC = 7
       JSON_INDENT ?= no
       APIKEY ?=
-      MOSQUITTO_INC = -I/usr/include
-      MOSQUITTO_LIB = -L/usr/lib
+      MOSQUITTO_INC = -I#{include}
+      MOSQUITTO_LIB = -L#{lib}
       MORELIBS = # -lssl
-      LUA_CFLAGS = -I/usr/local/include
-      LUA_LIBS   = -L/usr/local/lib -llua -lm
+      LUA_CFLAGS = -I#{include}
+      LUA_LIBS   = -L#{lib} -llua -lm
       GEOCODE_TIMEOUT = 4000
     EOS
   end
@@ -135,7 +135,7 @@ class Recorder < Formula
 
     opts="${opts} --http-host 127.0.0.1 --http-port 8083"
 
-    exec "/usr/local/sbin/ot-recorder" ${opts} "owntracks/#"
+    exec "#{sbin}/ot-recorder" ${opts} "owntracks/#"
     EOS
   end
 
