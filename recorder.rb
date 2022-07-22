@@ -71,6 +71,11 @@ class Recorder < Formula
   end
 
   def post_install
+      (etc/"default").mkpath
+      unless (etc+"default/ot-recorder").exist?
+         (etc+"default/ot-recorder").write settings_template
+      end
+
       unless (etc+"ot-recorder.sh").exist?
          # Create Recorder launch script with configuration in it
          (etc+"ot-recorder.sh").write launch_script
@@ -136,6 +141,79 @@ class Recorder < Formula
     opts="${opts} --http-host 127.0.0.1 --http-port 8083"
 
     exec "#{sbin}/ot-recorder" ${opts} "owntracks/#"
+    EOS
+  end
+
+  def settings_template; <<-EOS
+    #(@)ot-recorder.default
+    #
+    # Specify global configuration options for the OwnTracks Recorder
+    # and its associated utilities to override compiled-in defaults.
+    # Lines beginning with # are comments
+    # *** In libconfig versions < 1.4 a trailing semicolon is mandatory
+
+    # -----------------------------------------------------
+    # Storage directory
+    # OTR_STORAGEDIR="/var/spool/owntracks/recorder/store"
+
+    # -----------------------------------------------------
+    # Address or hostname of the MQTT broker
+    # OTR_HOST="localhost"
+
+    # -----------------------------------------------------
+    # Port number of the MQTT broker. Defaults to 1883.
+    # MQTT can be disabled by setting this to 0.
+    # OTR_PORT=1883
+
+    # -----------------------------------------------------
+    # Username for the MQTT connection
+    # OTR_USER=""
+
+    # -----------------------------------------------------
+    # Password for the MQTT connection
+    # OTR_PASS=""
+
+    # -----------------------------------------------------
+    # QoS for MQTT connection
+    # OTR_QOS=2
+
+    # -----------------------------------------------------
+    # MQTT clientid (default is constant+hostname+pid)
+    # OTR_CLIENTID=""
+
+    # -----------------------------------------------------
+    # Path to PEM-encoded CA certificate file for MQTT (no default)
+    # OTR_CAFILE=""
+
+    # -----------------------------------------------------
+    # Address for the HTTP module to bind to (default: localhost)
+    # OTR_HTTPHOST="localhost"
+
+    # -----------------------------------------------------
+    # Port number for the HTTP module to bind to (default: 8083)
+    # OTR_HTTPPORT=8083
+
+    # -----------------------------------------------------
+    # optional path to HTTP directory in which to store
+    # access log. Default is to not log access
+    # OTR_HTTPLOGDIR=""
+
+    # -----------------------------------------------------
+    # API key for reverse-geo lookups
+    # OTR_GEOKEY=""
+
+    # -----------------------------------------------------
+    # Reverse geo precision
+    # OTR_PRECISION=7
+
+    # -----------------------------------------------------
+    # Browser API key for Google maps
+    # OTR_BROWSERAPIKEY=""
+
+    # -----------------------------------------------------
+    # List of topics for MQTT to subscribe to, blank separated in a string
+    # OTR_TOPICS="owntracks/#"
+
     EOS
   end
 

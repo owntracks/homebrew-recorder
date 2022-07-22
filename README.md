@@ -14,5 +14,7 @@ launching:
     #{HOMEBREW_PREFIX}/etc/ot-recorder.sh		which is
     /usr/local/etc/ot-recorder.sh			on Intel Macs and
     /opt/homebrew/etc/ot-recorder.sh			on Apple Silicon Macs
+
+There is also a file with configuration settings in ETCDIR/default/ot-recorder
 ```
 
