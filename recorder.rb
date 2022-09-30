@@ -115,8 +115,8 @@ class Recorder < Formula
       GHASHPREC = 7
       JSON_INDENT ?= no
       APIKEY ?=
-      MOSQUITTO_INC = -I#{include}
-      MOSQUITTO_LIB = -L#{lib}
+      MOSQUITTO_CFLAGS = `$(PKG_CONFIG) --cflags libmosquitto`
+      MOSQUITTO_LIBS   = `$(PKG_CONFIG) --libs libmosquitto`
       MORELIBS = # -lssl
       LUA_CFLAGS = -I#{include}
       LUA_LIBS   = -L#{lib} -llua -lm
