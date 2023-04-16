@@ -232,28 +232,9 @@ class Recorder < Formula
   end
 
 
-  plist_options :manual => "#{HOMEBREW_PREFIX}/etc/ot-recorder.sh"
-
-  def plist; <<-EOS
-    <?xml version="1.0" encoding="UTF-8"?>
-    <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-    <plist version="1.0">
-    <dict>
-      <key>Label</key>
-      <string>#{plist_name}</string>
-      <key>ProgramArguments</key>
-      <array>
-        <string>#{etc}/ot-recorder.sh</string>
-      </array>
-      <key>RunAtLoad</key>
-      <true/>
-      <key>KeepAlive</key>
-      <false/>
-      <key>WorkingDirectory</key>
-      <string>#{var}/owntracks</string>
-    </dict>
-    </plist>
-    EOS
-  end
+  service do
+    run HOMEBREW_PREFIX/etc/ot-recorder.sh
+    require_root false
+    environment_variables HOMEBREW_PREFIX/"bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
 end
