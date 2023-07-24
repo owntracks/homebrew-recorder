@@ -233,8 +233,9 @@ class Recorder < Formula
 
 
   service do
-    run HOMEBREW_PREFIX/etc/ot-recorder.sh
+    run etc+"ot-recorder.sh"
     require_root false
-    environment_variables HOMEBREW_PREFIX/"bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    environment_variables PATH: std_service_path_env
+  end
 
 end
