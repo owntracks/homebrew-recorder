@@ -109,7 +109,9 @@ class Recorder < Formula
       WITH_PING ?= yes
       WITH_KILL ?= no
       WITH_ENCRYPT ?= no
-      WITH_GREENWICH ?= yes
+      WITH_GREENWICH ?= no
+      WITH_TZ ?= yes
+      TZDATADB = #{share}/recorder/timezone16.bin
       STORAGEDEFAULT = #{var}/owntracks/recorder/store
       DOCROOT = #{share}/recorder/docroot
       GHASHPREC = 7
